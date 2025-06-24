@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tintor-apps
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:dat-doan-tpv-clv/tintor-config.git
+    targetRevision: master
+    path: apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  info:
+    - name: "TINTOR"
+      value: "App of Apps"

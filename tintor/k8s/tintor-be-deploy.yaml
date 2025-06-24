@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tintor-be
+  labels:
+    app: tintor-be-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tintor-be
+  template:
+    metadata:
+      name: tintor-be
+      labels:
+        app: tintor-be
+    spec:
+      containers:
+        - name: tintor-be
+          image: tintor-be:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            # Secret env
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-be-secret
+                  key: ACCESS_TOKEN_SECRET
+
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-be-secret
+                  key: REFRESH_TOKEN_SECRET
+
+            - name: CLOUDINARY_CLOUD_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-be-secret
+                  key: CLOUDINARY_CLOUD_NAME
+
+            - name: CLOUDINARY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-be-secret
+                  key: CLOUDINARY_API_KEY
+
+            - name: CLOUDINARY_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-be-secret
+                  key: CLOUDINARY_API_SECRET
+
+            # Config env
+            - name: MONGO_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: tintor-be-config
+                  key: MONGO_URI
+
+            - name: TOKEN_EXPIRE_IN
+              valueFrom:
+                configMapKeyRef:
+                  name: tintor-be-config
+                  key: TOKEN_EXPIRE_IN
+
+            - name: REFRESH_TOKEN_EXPIRE_IN
+              valueFrom:
+                configMapKeyRef:
+                  name: tintor-be-config
+                  key: REFRESH_TOKEN_EXPIRE_IN
+
+            - name: TINTOR_MATCHING_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: tintor-be-config
+                  key: TINTOR_MATCHING_URL
+
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: tintor-be-config
+                  key: PORT
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+      restartPolicy: Always

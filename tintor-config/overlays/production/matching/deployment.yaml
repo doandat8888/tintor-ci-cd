@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tintor-matching
+  namespace: tintor-matching
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tintor-matching
+  template:
+    metadata:
+      name: tintor-matching
+      labels:
+        app: tintor-matching
+    spec:
+      containers:
+        - name: tintor-matching
+          image: doandat8888/tintor-matching:latest
+          ports:
+            - containerPort: 8888
+              protocol: TCP

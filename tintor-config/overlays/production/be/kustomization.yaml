@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: tintor-be
+
+resources:
+- namespace.yaml
+- configmap.yaml
+- deployment.yaml
+- secret.yaml
+- service.yaml
+
+images:
+- name: doandat8888/tintor-be
+  newTag: 3ee2d493692eabc1a0eb31367ca89257eb9b241d

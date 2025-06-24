@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tintor-fe-service
+  namespace: tintor-fe
+  labels:
+    app: tintor-fe
+spec:
+  selector:
+    app: tintor-fe
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5173
+      targetPort: 5173
+      nodePort: 30200
+  type: NodePort

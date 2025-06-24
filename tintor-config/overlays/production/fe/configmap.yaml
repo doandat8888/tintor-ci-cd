@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tintor-fe-env
+  namespace: tintor-fe
+data:
+  VITE_FIREBASE_API_KEY: 'AIzaSyD2Bl8MU0dCUyqkkIvRS30E11rNMtjZP_I'
+  VITE_AUTH_DOMAIN: 'hackathon-project-e259e.firebaseapp.com'
+  VITE_PROJECT_ID: 'hackathon-project-e259e'
+  VITE_STORAGE_BUCKET: 'hackathon-project-e259e.firebasestorage.app'
+  VITE_MESSAGING_SENDER_ID: '1058058939074'
+  VITE_APP_ID: '1:1058058939074:web:a5e116eedce5148b62695b'
+  VITE_API_URL: 'http://localhost:30300/'

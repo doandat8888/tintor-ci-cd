@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tintor-fe
+  labels:
+    app: tintor-fe-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tintor-fe
+  template:
+    metadata: 
+      name: tintor-fe
+      labels:
+        app: tintor-fe
+    spec:
+      containers: 
+        - name: tintor-fe
+          image: tintor-fe:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: VITE_FIREBASE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-secret
+                  key: VITE_FIREBASE_API_KEY
+            - name: VITE_AUTH_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-secret
+                  key: VITE_AUTH_DOMAIN
+            - name: VITE_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-secret
+                  key: VITE_PROJECT_ID
+            - name: VITE_STORAGE_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-secret
+                  key: VITE_STORAGE_BUCKET
+            - name: VITE_MESSAGING_SENDER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-secret
+                  key: VITE_MESSAGING_SENDER_ID
+            - name: VITE_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-secret
+                  key: VITE_APP_ID
+            - name: VITE_API_URL
+              valueFrom:
+                secretKeyRef:
+                  name: tintor-fe-config
+                  key: VITE_API_URL
+          ports:
+          - containerPort: 5173
+            protocol: TCP
+      restartPolicy: Always

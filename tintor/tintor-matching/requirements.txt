@@ -1,0 +1,8 @@
+Flask
+pyngrok
+scikit-learn
+imbalanced-learn
+pandas
+numpy
+joblib
+flask_cors

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tintor-matching
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:dat-doan-tpv-clv/tintor-config.git
+    targetRevision: master
+    path: overlays/production/matching
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tintor-matching
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

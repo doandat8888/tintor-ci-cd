@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  tintor-be:
+    container_name: tintor-be
+    image: tintor-be
+    build:
+      context: ./tintor-be
+   
+    ports:
+      - '8080:8080'
+    env_file:
+      - ./tintor-be/.env
+    environment:
+      TINTOR_MATCHING_URL: 'http://tintor-matching:8888' # will override the value in .env file
+    networks:
+      - tintor-network
+
+  tintor-fe:
+    container_name: tintor-fe
+    image: tintor-fe
+    build:
+      context: ./tintor-fe
+   
+    ports:
+      - '5173:5173'
+    env_file:
+      - ./tintor-fe/.env
+    networks:
+      - tintor-network
+
+  tintor-matching:
+    container_name: tintor-matching
+    image: tintor-matching
+    build:
+      context: ./tintor-matching
+
+    ports:
+      - '8888:8888'
+    networks:
+      - tintor-network
+
+networks:
+  tintor-network:
+    driver: bridge

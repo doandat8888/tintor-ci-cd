@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Nền đen mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: transparent; /* Trong suốt */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.5); /* Hiệu ứng ánh sáng */
+}
+
+.light-effect {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 255, 0, 0.5) 0%, rgba(0, 0, 0, 0) 70%);
+  animation: pulse 5s infinite;
+}
+
+.bulb-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px; /* Kích thước bóng đèn */
+  height: 60px;
+  transform: translate(-50%, -50%);
+  animation: light-up 5s infinite; /* Hiệu ứng sáng */
+}
+
+.loading-text {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  animation: fade-in 5s infinite; /* Hiệu ứng mờ chữ */
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes light-up {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0%, 50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

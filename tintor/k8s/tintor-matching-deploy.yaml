@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tintor-matching
+  labels:
+    app: tintor-matching-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tintor-matching
+  template:
+    metadata:
+      name: tintor-matching
+      labels:
+        app: tintor-matching
+    spec:
+      containers:
+        - name: tintor-matching
+          image: tintor-matching:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+      restartPolicy: Always
