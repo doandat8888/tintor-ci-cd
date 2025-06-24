@@ -11,7 +11,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-        <a href="#tintor-project">Tintor Project</a>
+        <a href="#tintor-project">Tintor Project with CI/CD</a>
     </li>
     <li>
         <a href="#built-with">Built With</a>
